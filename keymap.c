@@ -6,25 +6,25 @@
 
 // Define homerow mods
 // Left-hand home row mods
-#define SFT_A LSFT_T(KC_A)
-#define CTL_S LCTL_T(KC_S)
-#define GUI_D LGUI_T(KC_D)
-#define ALT_F LALT_T(KC_F)
+#define HOME_A LGUI_T(KC_A)
+#define HOME_S LALT_T(KC_S)
+#define HOME_D LSFT_T(KC_D)
+#define HOME_F LCTL_T(KC_F)
 
 // Right-hand home row mods
-#define ALT_J LALT_T(KC_J)
-#define GUI_K RGUI_T(KC_K)
-#define CTL_L RCTL_T(KC_L)
-#define SFT_SCLN RSFT_T(KC_SCLN)
+#define HOME_J LCTL_T(KC_J)
+#define HOME_K RSFT_T(KC_K)
+#define HOME_L RALT_T(KC_L)
+#define HOME_SCLN RGUI_T(KC_SCLN)
 
 // Open up the array
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [0] = LAYOUT_ortho_4x12(
-    KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,   KC_T,     KC_Y,    KC_U,   KC_I,     KC_O,     KC_P,      KC_BSLS,
-    KC_ESC,   SFT_A,    CTL_S,    GUI_D,   ALT_F,  KC_G,     KC_H,    ALT_J,  GUI_K,    CTL_L,    SFT_SCLN,  KC_QUOT,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,   KC_B,     KC_N,    KC_M,   KC_COMM,  KC_DOT,   KC_SLSH,   KC_ENT,
-    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_APP,  MO(1),  KC_BSPC,  KC_SPC,  MO(2),  KC_LEFT,  KC_DOWN,  KC_UP,     KC_RIGHT
+    KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,       KC_BSLS,
+    KC_ESC,   HOME_A,   HOME_S,   HOME_D,  HOME_F,  KC_G,     KC_H,    HOME_J,  HOME_K,   HOME_L,   HOME_SCLN,  KC_QUOT,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,     KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,    KC_ENT,
+    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_APP,  MO(1),   KC_BSPC,  KC_SPC,  MO(2),   KC_LEFT,  KC_DOWN,  KC_UP,      KC_RIGHT
 ),
 
 [1] = LAYOUT_ortho_4x12(
