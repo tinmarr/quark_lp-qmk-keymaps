@@ -2,7 +2,7 @@
 #+author: Martin Chaperot
 #+property: header-args :tangle keymap.c
 
-This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quark LP keyboard]]. It makes use of home row mods (GASC), only uses 3 layers and only requires the use of 39/48 keys (tho all keys are mapped for convience).
+This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quark LP keyboard]]. It makes use of home row mods (SCGA), only uses 3 layers and only requires the use of 39/48 keys (tho all keys are mapped for convience).
 
 * Header/definitions
 #+begin_src c-ts
@@ -14,16 +14,16 @@ This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quar
 
 // Define homerow mods
 // Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_S LALT_T(KC_S)
-#define HOME_D LSFT_T(KC_D)
-#define HOME_F LCTL_T(KC_F)
+#define HOME_A LSFT_T(KC_A)
+#define HOME_S LCTL_T(KC_S)
+#define HOME_D LGUI_T(KC_D)
+#define HOME_F LALT_T(KC_F)
 
 // Right-hand home row mods
-#define HOME_J LCTL_T(KC_J)
-#define HOME_K RSFT_T(KC_K)
-#define HOME_L RALT_T(KC_L)
-#define HOME_SCLN RGUI_T(KC_SCLN)
+#define HOME_J LALT_T(KC_J)
+#define HOME_K RGUI_T(KC_K)
+#define HOME_L RCTL_T(KC_L)
+#define HOME_SCLN RSFT_T(KC_SCLN)
 
 // Open up the array
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -31,6 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * Layer 0
 This is the base/default layer
 |-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
+|       |       |     |     |    |      |     |    |      |      |    |       |
 |-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
 | Tab   | Q     | W   | E   | R  | T    | Y   | U  | I    | O    | P  | \     |
 |-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
@@ -50,6 +51,7 @@ This is the base/default layer
 #+end_src
 * Layer 1
 |---+-----+-----+---+-----+---+---+-----+-----+-----+-----+-----|
+|   |     |     |   |     |   |   |     |     |     |     |     |
 |---+-----+-----+---+-----+---+---+-----+-----+-----+-----+-----|
 | ~ | !   | @   | ( | )   | { | } | [   | ]   | -   | _   | xxx |
 |---+-----+-----+---+-----+---+---+-----+-----+-----+-----+-----|
@@ -69,6 +71,7 @@ This is the base/default layer
 #+end_src
 * Layer 2
 |-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
+|     |      |            |      |     |         |         |      |         |       |      |      |
 |-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
 | F1  | F2   | F3         | F4   | F5  | F6      | F7      | F8   | F9      | F10   | F11  | F12  |
 |-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
