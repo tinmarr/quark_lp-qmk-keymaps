@@ -4,6 +4,33 @@
 
 This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quark LP keyboard]]. It makes use of home row mods (SCGA), only uses 3 layers and only requires the use of 39/48 keys (tho all keys are mapped for convience).
 
+* How to use
+:PROPERTIES:
+:header-args: :tangle no
+:END:
+This is mainly so that I remember how to use QMK without needed to refer back to the docs everytime.
+[[https://docs.qmk.fm/][Here are the docs]] though if needed.
+** Setup environment
+For convenience
+#+begin_src bash-ts
+qmk config user.keyboard=checkerboards/quark_lp
+qmk config user.keymap=tinmarr
+#+end_src
+** Setup keymap folder
+If this isn't setup already, we want to first create the folder then symlink from this git repo.
+To check if the keymap already exists, look in: ~qmk_firmware/keyboards/checkerboards/quark_lp/keymaps~. Otherwise:
+#+begin_src bash-ts
+qmk new-keymap # Creates the folder the tinmarr in the folder above
+# cd into the created folder
+rm *
+ln -s ~/qmk/quark_lp-qmk-keymaps/* . # Should just be the location where this repo is cloned
+#+end_src
+This will let you just work in this repo without needing to mess with the QMK firmware repo.
+** Compile and flash
+#+begin_src bash-ts
+qmk compile # To compile
+qmk flash # To flash - make sure to press the little reset hole on the back
+#+end_src
 * Header/definitions
 #+begin_src c-ts
 #include QMK_KEYBOARD_H
@@ -30,23 +57,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #+end_src
 * Layer 0
 This is the base/default layer
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
-|       |       |     |     |    |      |     |    |      |      |    |       |
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
-| Tab   | Q     | W   | E   | R  | T    | Y   | U  | I    | O    | P  | \     |
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
-| Esc   | A     | S   | D   | F  | G    | H   | J  | K    | L    | ;  | "     |
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
-| Shift | Z     | X   | C   | V  | B    | N   | M  | ,    | .    | /  | Enter |
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
-| Ctrl  | Super | Alt | App | L1 | Bspc | Spc | L2 | Left | Down | Up | Right |
-|-------+-------+-----+-----+----+------+-----+----+------+------+----+-------|
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
+|       |       |     |     |    |      |     |            |      |      |    |       |
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
+| Tab   | Q     | W   | E   | R  | T    | Y   | U          | I    | O    | P  | \     |
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
+| Esc   | A     | S   | D   | F  | G    | H   | J          | K    | L    | ;  | "     |
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
+| Shift | Z     | X   | C   | V  | B    | N   | M          | ,    | .    | /  | Enter |
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
+| Ctrl  | Super | Alt | App | L1 | Bspc | Spc | L2/Compose | Left | Down | Up | Right |
+|-------+-------+-----+-----+----+------+-----+------------+------+------+----+-------|
 #+begin_src c-ts
 [0] = LAYOUT_ortho_4x12(
-    KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,    KC_I,     KC_O,     KC_P,       KC_BSLS,
-    KC_ESC,   HOME_A,   HOME_S,   HOME_D,  HOME_F,  KC_G,     KC_H,    HOME_J,  HOME_K,   HOME_L,   HOME_SCLN,  KC_QUOT,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,     KC_N,    KC_M,    KC_COMM,  KC_DOT,   KC_SLSH,    KC_ENT,
-    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_APP,  MO(1),   KC_BSPC,  KC_SPC,  MO(2),   KC_LEFT,  KC_DOWN,  KC_UP,      KC_RIGHT
+    KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,    KC_T,     KC_Y,    KC_U,            KC_I,     KC_O,     KC_P,       KC_BSLS,
+    KC_ESC,   HOME_A,   HOME_S,   HOME_D,  HOME_F,  KC_G,     KC_H,    HOME_J,          HOME_K,   HOME_L,   HOME_SCLN,  KC_QUOT,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    KC_B,     KC_N,    KC_M,            KC_COMM,  KC_DOT,   KC_SLSH,    KC_ENT,
+    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_APP,  MO(1),   KC_BSPC,  KC_SPC,  LT(2, KC_ALGR),  KC_LEFT,  KC_DOWN,  KC_UP,      KC_RIGHT
 ),
 #+end_src
 * Layer 1
@@ -70,23 +97,23 @@ This is the base/default layer
 ),
 #+end_src
 * Layer 2
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
-|     |      |            |      |     |         |         |      |         |       |      |      |
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
-| F1  | F2   | F3         | F4   | F5  | F6      | F7      | F8   | F9      | F10   | F11  | F12  |
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
-| xxx | Prev | Play/Pause | Next | xxx | xxx     | Left    | Down | Up      | Right | xxx  | xxx  |
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
-| xxx | Mute | Vol-       | Vol+ | xxx | Bright- | Bright+ | PgDn | PgUp    | xxx   | xxx  | xxx  |
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
-| xxx | xxx  | xxx        | xxx  | xxx | Del     |         | xxx  | Compose | PgDn  | PgUp | PrSc |
-|-----+------+------------+------+-----+---------+---------+------+---------+-------+------+------|
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
+|     |      |            |      |     |         |         |      |      |       |     |      |
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
+| F1  | F2   | F3         | F4   | F5  | F6      | F7      | F8   | F9   | F10   | F11 | F12  |
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
+| xxx | Prev | Play/Pause | Next | xxx | xxx     | Left    | Down | Up   | Right | xxx | xxx  |
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
+| xxx | Mute | Vol-       | Vol+ | xxx | Bright- | Bright+ | PgDn | PgUp | xxx   | xxx | xxx  |
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
+| xxx | xxx  | xxx        | xxx  | xxx | Del     |         | xxx  | xxx  | xxx   | xxx | PrSc |
+|-----+------+------------+------+-----+---------+---------+------+------+-------+-----+------|
 #+begin_src c-ts
 [2] = LAYOUT_ortho_4x12(
     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,
     XXXXXXX,  KC_MPRV,  KC_MPLY,  KC_MNXT,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  XXXXXXX,  XXXXXXX,
     XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_VOLU,  XXXXXXX,  KC_BRID,  KC_BRIU,  KC_PGDN,  KC_PGUP,  XXXXXXX,   XXXXXXX,  XXXXXXX,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_DEL,   _______,  XXXXXXX,  KC_ALGR,  KC_PGDN,   KC_PGUP,  KC_PSCR
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_DEL,   _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  KC_PSCR
 )
 #+end_src
 * Array close
