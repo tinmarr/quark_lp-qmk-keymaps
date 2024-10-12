@@ -106,23 +106,23 @@ Layer that let's me access system stuff and let's me toggle to the gaming layer.
 #+end_src
 * Gaming Layer (L2)
 This is the gaming layer. Removes all mod-taps and fancy stuff from layer 0. Layer 1 remains accessible, but layer 2 does not (must go through layer 0).
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
-|       |       |     |     |   |      |     |           |      |      |    |       |
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
-| Tab   | Q     | W   | E   | R | T    | Y   | U         | I    | O    | P  | \     |
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
-| Esc   | A     | S   | D   | F | G    | H   | J         | K    | L    | ;  | "     |
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
-| Shift | Z     | X   | C   | V | B    | N   | M         | ,    | .    | /  | Enter |
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
-| Ctrl  | Super | Alt | App |   | Bspc | Spc | Default L_Base | Left | Down | Up | Right |
-|-------+-------+-----+-----+---+------+-----+-----------+------+------+----+-------|
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
+|       |       |     |     |   |     |      |                |      |      |    |       |
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
+| Tab   | Q     | W   | E   | R | T   | Y    | U              | I    | O    | P  | \     |
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
+| Esc   | A     | S   | D   | F | G   | H    | J              | K    | L    | ;  | "     |
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
+| Shift | Z     | X   | C   | V | B   | N    | M              | ,    | .    | /  | Enter |
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
+| Ctrl  | Super | Alt | Bspc |   | Spc | Spc | Default L_Base | Left | Down | Up | Right |
+|-------+-------+-----+-----+---+-----+------+----------------+------+------+----+-------|
 #+begin_src c-ts
 [2] = LAYOUT_ortho_4x12(
-    KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,     KC_T,     KC_Y,    KC_U,       KC_I,     KC_O,     KC_P,       KC_BSLS,
-    KC_ESC,   KC_A,     KC_S,     KC_D,    KC_F,     KC_G,     KC_H,    KC_J,       KC_K,     KC_L,     KC_SCLN,    KC_QUOT,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,     KC_B,     KC_N,    KC_M,       KC_COMM,  KC_DOT,   KC_SLSH,    KC_ENT,
-    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_APP,  _______,  KC_BSPC,  KC_SPC,  DF(_BASE),  KC_LEFT,  KC_DOWN,  KC_UP,      KC_RIGHT
+    KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    KC_Y,    KC_U,       KC_I,     KC_O,     KC_P,     KC_BSLS,
+    KC_ESC,   KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    KC_H,    KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,    KC_N,    KC_M,       KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENT,
+    KC_LCTL,  KC_LGUI,  KC_LALT,  KC_BSPC,  _______,  KC_SPC,  KC_SPC,  DF(_BASE),  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
 ),
 #+end_src
 * Number/Symbols Layer (L3)
