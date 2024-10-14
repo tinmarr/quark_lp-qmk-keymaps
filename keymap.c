@@ -29,8 +29,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_BASE] = LAYOUT_ortho_4x12(
     KC_TAB,   KC_Q,     KC_W,     KC_E,    KC_R,      KC_T,     KC_Y,    KC_U,               KC_I,     KC_O,     KC_P,       KC_BSLS,
-    KC_ESC,   HOME_A,   HOME_S,   HOME_D,  HOME_F,    KC_G,     KC_H,    HOME_J,             HOME_K,   HOME_L,   HOME_SCLN,  KC_QUOT,
-    XXXXXXX,  KC_Z,     KC_X,     KC_C,    KC_V,      KC_B,     KC_N,    KC_M,               KC_COMM,  KC_DOT,   KC_SLSH,    KC_ENT,
+    KC_ESC,   HOME_A,   HOME_S,   HOME_D,  HOME_F,    KC_G,     KC_H,    HOME_J,             HOME_K,   HOME_L,   HOME_SCLN,  KC_ENT,
+    XXXXXXX,  KC_Z,     KC_X,     KC_C,    KC_V,      KC_B,     KC_N,    KC_M,               KC_COMM,  KC_DOT,   KC_SLSH,    XXXXXXX,
     XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_APP,  MO(_NUM),  KC_BSPC,  KC_SPC,  LT(_SYS, KC_ALGR),  KC_LEFT,  KC_DOWN,  KC_UP,      KC_RIGHT
 ),
 
@@ -43,14 +43,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_GAME] = LAYOUT_ortho_4x12(
     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,    KC_Y,    KC_U,       KC_I,     KC_O,     KC_P,     KC_BSLS,
-    KC_ESC,   KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    KC_H,    KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,    KC_N,    KC_M,       KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENT,
+    KC_ESC,   KC_A,     KC_S,     KC_D,     KC_F,     KC_G,    KC_H,    KC_J,       KC_K,     KC_L,     KC_SCLN,  KC_ENT,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,    KC_N,    KC_M,       KC_COMM,  KC_DOT,   KC_SLSH,  KC_QUOT,
     KC_LCTL,  KC_LGUI,  KC_LALT,  KC_BSPC,  _______,  KC_SPC,  KC_SPC,  DF(_BASE),  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT
 ),
 
 [_NUM] = LAYOUT_ortho_4x12(
     KC_TILD,  KC_EXLM,  KC_AT,    KC_LPRN,  KC_RPRN,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  KC_MINS,  KC_UNDS,  XXXXXXX,
-    KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     XXXXXXX,
+    KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_QUOT,
     _______,  XXXXXXX,  XXXXXXX,  KC_AMPR,  KC_PERC,  KC_CIRC,  KC_DLR,   KC_HASH,  KC_EQL,   KC_PLUS,  KC_ASTR,  XXXXXXX,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
 ),
