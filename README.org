@@ -2,7 +2,9 @@
 #+author: Martin Chaperot
 #+property: header-args :tangle keymap.c
 
-This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quark LP keyboard]]. It makes use of home row mods (SCGA), only uses 3 layers and only requires the use of 39/48 keys (tho all keys are mapped for convience).
+This is my QMK config for my [[https://www.checkerboards.xyz/quark-lp.html][Quark LP keyboard]]. It makes use of home row mods (SCGA), only uses 3 layers and uses 39 keys.
+
+There is also a "gaming" layer that can be toggled which disables home row mods.
 
 * How to use
 :PROPERTIES:
