@@ -5,10 +5,9 @@ tangle: ./keymap.c
 @end
 
 * Checkerboards Quark LP Keymap
-This is my QMK config for my {https://www.checkerboards.xyz/quark-lp.html}[Quark LP keyboard]. I've set it up in a split manner. It makes use of home row mods (SCGA) and uses 36 keys.
+  This is my QMK config for my {https://www.checkerboards.xyz/quark-lp.html}[Quark LP keyboard]. I've set it up in a split manner. It makes use of home row mods (SCGA) and uses 36 keys.
 
-There is also a "gaming" layer that can be toggled which disables home row mods.
-
+  There is also a "gaming" layer that can be toggled which disables home row mods.
 ** How to use
    This is mainly so that I remember how to use QMK without needed to refer back to the docs everytime.
    {https://docs.qmk.fm/}[Here are the docs] though if needed.
