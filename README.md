@@ -4,9 +4,10 @@
 
 # Checkerboards Quark LP Keymap
 
-This is my QMK config for my [Quark LP keyboard](https://www.checkerboards.xyz/quark-lp.html). I've set it up in a split manner. It makes use of home row mods (SCGA) and uses 36 keys.
+This is my QMK config for my [Quark LP keyboard](https://www.checkerboards.xyz/quark-lp.html). 
+I've set it up in a split manner. It makes use of home row mods (SCGA) and uses 34 keys.
 
-There is also a "gaming" layer that can be toggled which disables home row mods.
+There is also a "gaming" layer that can be toggled.
 
 ## How to use
 
@@ -74,15 +75,15 @@ This is the base/default layer
 |---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
 | Z       | X      | C       | V     | B    |       |                  | N   | M     | ,       | .      | /       |
 |---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-|         |        |         | Esc   | Bspc | L_Num | L_System/Compose | Spc |       |         |        |         |
+|         |        |         |       | Bspc | L_Num | L_System/Compose | Spc |       |         |        |         |
 |---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
 ```
 ```c
 [_BASE] = LAYOUT_ortho_4x12(
-    KC_Q,     KC_W,     KC_E,     KC_R,    KC_T,     XXXXXXX,   XXXXXXX,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
-    HOME_A,   HOME_S,   HOME_D,   HOME_F,  KC_G,     XXXXXXX,   XXXXXXX,            KC_H,    HOME_J,   HOME_K,   HOME_L,   HOME_SCLN,
-    KC_Z,     KC_X,     KC_C,     KC_V,    KC_B,     XXXXXXX,   XXXXXXX,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_ESC,  KC_BSPC,  MO(_NUM),  LT(_SYS, KC_ALGR),  KC_SPC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
+    KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     XXXXXXX,   XXXXXXX,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
+    HOME_A,   HOME_S,   HOME_D,   HOME_F,   KC_G,     XXXXXXX,   XXXXXXX,            KC_H,    HOME_J,   HOME_K,   HOME_L,   HOME_SCLN,
+    KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,   XXXXXXX,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BSPC,  MO(_NUM),  LT(_SYS, KC_ALGR),  KC_SPC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
 ),
 ```
 
@@ -90,24 +91,24 @@ This is the base/default layer
 
 Layer that let's me access system stuff and let's me toggle to the gaming layer.
 ``` markdown
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
-|      |            |      |         |         |                |     |      |      |      |       |      |
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
-| F1   | F2         | F3   | F4      | F5      | xxx            | xxx | F6   | F7   | F8   | F9    | F10  |
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
-| Prev | Play/Pause | Next | xxx     | xxx     | xxx            | xxx | Left | Down | Up   | Right | PrSc |
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
-| Mute | Vol-       | Vol+ | Bright- | Bright+ | xxx            | xxx | Tab  | PgDn | PgUp | F11   | F12  |
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
-| xxx  | xxx        |      | xxx     | Del     | Default L_Game | xxx |      |      |      | xxx   | xxx  |
-|------|------------|------|---------|---------|----------------|-----|------|------|------|-------|------|
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+|      |            |      |         |                |     |     |      |      |      |       |      |
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+| F1   | F2         | F3   | F4      | F5             |     |     | F6   | F7   | F8   | F9    | F10  |
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+| Prev | Play/Pause | Next | xxx     | Default L_Game |     |     | Left | Down | Up   | Right | PrSc |
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+| Mute | Vol-       | Vol+ | Bright- | Bright+        |     |     | Tab  | PgDn | PgUp | F11   | F12  |
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+|      |            |      | xxx     | Esc            | xxx | xxx |      |      |      |       |      |
+|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
 ```
 ```c
 [_SYS] = LAYOUT_ortho_4x12(
-    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    XXXXXXX,    XXXXXXX,  KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,
-    KC_MPRV,  KC_MPLY,  KC_MNXT,  XXXXXXX,  XXXXXXX,  XXXXXXX,    XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,
-    KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_BRID,  KC_BRIU,  XXXXXXX,    XXXXXXX,  KC_TAB,   KC_PGDN,  KC_PGUP,  KC_F11,    KC_F12,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_DEL,   DF(_GAME),  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX
+    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,      XXXXXXX,  XXXXXXX,  KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,
+    KC_MPRV,  KC_MPLY,  KC_MNXT,  XXXXXXX,  DF(_GAME),  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,
+    KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_BRID,  KC_BRIU,    XXXXXXX,  XXXXXXX,  KC_TAB,   KC_PGDN,  KC_PGUP,  KC_F11,    KC_F12,
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_ESC,     XXXXXXX,  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX
 ),
 ```
 
@@ -115,48 +116,48 @@ Layer that let's me access system stuff and let's me toggle to the gaming layer.
 
 This is the gaming layer. Removes all mod-taps and fancy stuff from layer 0. Layer 1 remains accessible, but layer 2 does not (must go through layer 0).
 ``` markdown
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
-|       |   |   |     |     |       |        |     |   |   |   |   |
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
-| Ctrl  | Q | W | E   | R   |       |        | Y   | U | I | O | P |
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
-| Esc   | A | S | D   | F   |       |        | H   | J | K | L | ; |
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
-| Shift | Z | X | C   | V   |       |        | N   | M | , | . | / |
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
-|       |   |   | Tab | Spc | L_Num | L_Base | Spc |   |   |   |   |
-|-------|---|---|-----|-----|-------|--------|-----|---|---|---|---|
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
+|       |   |   |   |     |       |        |     |   |   |   |   |
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
+| Ctrl  | Q | W | E | R   |       |        | Y   | U | I | O | P |
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
+| Esc   | A | S | D | F   |       |        | H   | J | K | L | ; |
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
+| Shift | Z | X | C | V   |       |        | N   | M | , | . | / |
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
+|       |   |   |   | Tab | L_Num | L_Base | Spc |   |   |   |   |
+|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
 ```
 ```c
 [_GAME] = LAYOUT_ortho_4x12(
-    KC_LCTL,  KC_Q,     KC_W,     KC_E,    KC_R,    XXXXXXX,  XXXXXXX,    KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
-    KC_ESC,   KC_A,     KC_S,     KC_D,    KC_F,    XXXXXXX,  XXXXXXX,    KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,    KC_V,    XXXXXXX,  XXXXXXX,    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_ENT,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_TAB,  KC_SPC,  _______,  DF(_BASE),  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
+    KC_LCTL,  KC_Q,     KC_W,     KC_E,     KC_R,    XXXXXXX,  XXXXXXX,    KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
+    KC_ESC,   KC_A,     KC_S,     KC_D,     KC_F,    XXXXXXX,  XXXXXXX,    KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,    XXXXXXX,  XXXXXXX,    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_ENT,
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_TAB,  _______,  DF(_BASE),  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
 ),
 ```
 
 ## Number/Symbols Layer
 
 ``` markdown
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
-|   |    |   |   |   |  |   |       |     |   |   |   |
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
-| ! | @  | ( | ) | { |  |   | }     | [   | ] | - | ' |
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
-| 1 | 2  | 3 | 4 | 5 |  |   | 6     | 7   | 8 | 9 | 0 |
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
-| ` | \| | & | % | ^ |  |   | $     | #   | = | + | * |
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
-|   |    |   |   | \ |  | ~ | Enter | Tab |   |   |   |
-|---|----|---|---|---|--|---|-------|-----|---|---|---|
+|---|----|---|---|---|--|---|-------|---|---|---|---|
+|   |    |   |   |   |  |   |       |   |   |   |   |
+|---|----|---|---|---|--|---|-------|---|---|---|---|
+| ! | @  | ( | ) | { |  |   | }     | [ | ] | - | ' |
+|---|----|---|---|---|--|---|-------|---|---|---|---|
+| 1 | 2  | 3 | 4 | 5 |  |   | 6     | 7 | 8 | 9 | 0 |
+|---|----|---|---|---|--|---|-------|---|---|---|---|
+| ` | \| | & | % | ^ |  |   | $     | # | = | + | * |
+|---|----|---|---|---|--|---|-------|---|---|---|---|
+|   |    |   |   | \ |  | ~ | Enter |   |   |   |   |
+|---|----|---|---|---|--|---|-------|---|---|---|---|
 ```
 ```c
 [_NUM] = LAYOUT_ortho_4x12(
     KC_EXLM,  KC_AT,    KC_LPRN,  KC_RPRN,  KC_LCBR,  XXXXXXX,  XXXXXXX,  KC_RCBR,  KC_LBRC,  KC_RBRC,  KC_MINS,  KC_QUOT,
     KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     XXXXXXX,  XXXXXXX,  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,
     KC_GRV,   KC_PIPE,  KC_AMPR,  KC_PERC,  KC_CIRC,  XXXXXXX,  XXXXXXX,  KC_DLR,   KC_HASH,  KC_EQL,   KC_PLUS,  KC_ASTR,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,  KC_BSLS,  _______,  KC_TILD,  KC_ENT,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BSLS,  _______,  KC_TILD,  KC_ENT,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
 ),
 ```
 
