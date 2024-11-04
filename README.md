@@ -96,9 +96,9 @@ Layer that let's me access system stuff and let's me toggle to the gaming layer.
 |------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
 | F1   | F2         | F3   | F4      | F5             |     |     | F6   | F7   | F8   | F9    | F10  |
 |------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-| Prev | Play/Pause | Next | xxx     | Default L_Game |     |     | Left | Down | Up   | Right | PrSc |
+| Prev | Play/Pause | Next | Tab     | Default L_Game |     |     | Left | Down | Up   | Right | PrSc |
 |------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-| Mute | Vol-       | Vol+ | Bright- | Bright+        |     |     | Tab  | PgDn | PgUp | F11   | F12  |
+| Mute | Vol-       | Vol+ | Bright- | Bright+        |     |     | xxx  | PgDn | PgUp | F11   | F12  |
 |------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
 |      |            |      | xxx     | Esc            | xxx | xxx |      |      |      |       |      |
 |------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
@@ -106,8 +106,8 @@ Layer that let's me access system stuff and let's me toggle to the gaming layer.
 ```c
 [_SYS] = LAYOUT_ortho_4x12(
     KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,      XXXXXXX,  XXXXXXX,  KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,
-    KC_MPRV,  KC_MPLY,  KC_MNXT,  XXXXXXX,  DF(_GAME),  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,
-    KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_BRID,  KC_BRIU,    XXXXXXX,  XXXXXXX,  KC_TAB,   KC_PGDN,  KC_PGUP,  KC_F11,    KC_F12,
+    KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_TAB,   DF(_GAME),  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,
+    KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_BRID,  KC_BRIU,    XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_PGDN,  KC_PGUP,  KC_F11,    KC_F12,
     XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_ESC,     XXXXXXX,  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX
 ),
 ```
