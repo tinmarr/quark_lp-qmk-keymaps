@@ -4,10 +4,9 @@
 
 # Checkerboards Quark LP Keymap
 
-This is my QMK config for my [Quark LP keyboard](https://www.checkerboards.xyz/quark-lp.html). 
-I've set it up in a split manner. It makes use of home row mods (SCGA) and uses 34 keys.
+This is my basic QMK config for my [Quark LP keyboard](https://www.checkerboards.xyz/quark-lp.html).
+I now primarily use this board for gaming as a supplement to my Ferris Sweep ([config here](https://github.com/tinmarr/sweep-zmk-config)). I have 34 and 38-key layouts in branches of this repo.
 
-There is also a "gaming" layer that can be toggled.
 
 ## How to use
 
@@ -34,28 +33,10 @@ qmk flash # To flash - make sure to press the little reset hole on the back
 ```c
 #include QMK_KEYBOARD_H
 
-// Defines for task manager and such
-#define CALTDEL LCTL(LALT(KC_DEL))
-#define TSKMGR LCTL(LSFT(KC_ESC))
-
-// Define homerow mods
-// Left-hand home row mods
-#define HOME_A LSFT_T(KC_A)
-#define HOME_S LCTL_T(KC_S)
-#define HOME_D LGUI_T(KC_D)
-#define HOME_F LALT_T(KC_F)
-
-// Right-hand home row mods
-#define HOME_J LALT_T(KC_J)
-#define HOME_K RGUI_T(KC_K)
-#define HOME_L RCTL_T(KC_L)
-#define HOME_SCLN RSFT_T(KC_SCLN)
-
 enum _Layers {
     _BASE,
-    _SYS,
-    _GAME,
-    _NUM
+    _NUM,
+    _SYS
 };
 
 // Open up the array
@@ -66,24 +47,48 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 This is the base/default layer
 ``` markdown
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-|         |        |         |       |      |       |                  |     |       |         |        |         |
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-| Q       | W      | E       | R     | T    |       |                  | Y   | U     | I       | O      | P       |
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-| Shift/A | Ctrl/S | Super/D | Alt/F | G    |       |                  | H   | Alt/J | Super/K | Ctrl/L | Shift/; |
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-| Z       | X      | C       | V     | B    |       |                  | N   | M     | ,       | .      | /       |
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
-|         |        |         |       | Bspc | L_Num | L_System/Compose | Spc |       |         |        |         |
-|---------|--------|---------|-------|------|-------|------------------|-----|-------|---------|--------|---------|
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
+|       |         |       |     |      |      |     |      |      |      |    |       |
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
+| Tab   | Q       | W     | E   | R    | T    | Y   | U    | I    | O    | P  | \     |
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
+| Esc   | A       | S     | D   | F    | G    | H   | J    | K    | L    | ;  | '     |
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
+| Shift | Z       | X     | C   | V    | B    | N   | M    | ,    | .    | /  | Enter |
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
+| Ctrl  | Compose | Super | Alt | _Num | Bspc | Spc | _Sys | Left | Down | Up | Right |
+|-------|---------|-------|-----|------|------|-----|------|------|------|----|-------|
 ```
 ```c
 [_BASE] = LAYOUT_ortho_4x12(
-    KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     XXXXXXX,   XXXXXXX,            KC_Y,    KC_U,     KC_I,     KC_O,     KC_P,
-    HOME_A,   HOME_S,   HOME_D,   HOME_F,   KC_G,     XXXXXXX,   XXXXXXX,            KC_H,    HOME_J,   HOME_K,   HOME_L,   HOME_SCLN,
-    KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     XXXXXXX,   XXXXXXX,            KC_N,    KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BSPC,  MO(_NUM),  LT(_SYS, KC_ALGR),  KC_SPC,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
+    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,     KC_T,    KC_Y,   KC_U,     KC_I,    KC_O,    KC_P,    KC_BSLS,
+    KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,     KC_G,    KC_H,   KC_J,     KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,     KC_B,    KC_N,   KC_M,     KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
+    KC_LCTL, KC_RALT, KC_RGUI, KC_LALT, MO(_NUM), KC_BSPC, KC_SPC, MO(_SYS), KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT
+),
+```
+
+## Number/Symbols Layer
+
+``` markdown
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+|  |   |     |   |   |   |   |   |   |   |   |  |
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+|  | ! | @   | ( | ) | { | } | [ | ] | - | _ |  |
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+|  | 1 | 2   | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 |  |
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+|  | ` | xxx | & | % | ^ | $ | # | = | + | * |  |
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+|  |   |     |   |   |   | ~ |   |   |   |   |  |
+|--|---|-----|---|---|---|---|---|---|---|---|--|
+```
+```c
+[_NUM] = LAYOUT_ortho_4x12(
+    _______,  KC_EXLM,  KC_AT,    KC_LPRN,  KC_RPRN,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  KC_MINS,  KC_UNDS,  _______,
+    _______,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     _______,
+    _______,  KC_GRV,   XXXXXXX,  KC_AMPR,  KC_PERC,  KC_CIRC,  KC_DLR,   KC_HASH,  KC_EQL,   KC_PLUS,  KC_ASTR,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,  KC_TILD,  XXXXXXX,  _______,  _______,  _______,  _______
 ),
 ```
 
@@ -91,73 +96,24 @@ This is the base/default layer
 
 Layer that let's me access system stuff and let's me toggle to the gaming layer.
 ``` markdown
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-|      |            |      |         |                |     |     |      |      |      |       |      |
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-| F1   | F2         | F3   | F4      | F5             |     |     | F6   | F7   | F8   | F9    | F10  |
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-| Prev | Play/Pause | Next | Tab     | Default L_Game |     |     | Left | Down | Up   | Right | PrSc |
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-| Mute | Vol-       | Vol+ | Bright- | Bright+        |     |     | xxx  | PgDn | PgUp | F11   | F12  |
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
-|      |            |      | xxx     | Esc            | xxx | xxx |      |      |      |       |      |
-|------|------------|------|---------|----------------|-----|-----|------|------|------|-------|------|
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
+|    |      |            |      |         |                |      |      |      |       |      |     |
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
+| F1 | F2   | F3         | F4   | F5      | F6             | F7   | F8   | F9   | F10   | F11  | F12 |
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
+|    | Prev | Play/Pause | Next | Tab     | Default L_Game | Left | Down | Up   | Right | PrSc |     |
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
+|    | Mute | Vol-       | Vol+ | Bright- | Bright+        | xxx  | PgDn | PgUp |       |      |     |
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
+|    |      |            |      |         |                |      |      |      |       |      |     |
+|----|------|------------|------|---------|----------------|------|------|------|-------|------|-----|
 ```
 ```c
 [_SYS] = LAYOUT_ortho_4x12(
-    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,      XXXXXXX,  XXXXXXX,  KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,
-    KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_TAB,   DF(_GAME),  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,
-    KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_BRID,  KC_BRIU,    XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_PGDN,  KC_PGUP,  KC_F11,    KC_F12,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_ESC,     XXXXXXX,  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX
-),
-```
-
-## Gaming Layer
-
-This is the gaming layer. Removes all mod-taps and fancy stuff from layer 0. Layer 1 remains accessible, but layer 2 does not (must go through layer 0).
-``` markdown
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-|       |   |   |   |     |       |        |     |   |   |   |   |
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-| Ctrl  | Q | W | E | R   |       |        | Y   | U | I | O | P |
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-| Esc   | A | S | D | F   |       |        | H   | J | K | L | ; |
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-| Shift | Z | X | C | V   |       |        | N   | M | , | . | / |
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-|       |   |   |   | Tab | L_Num | L_Base | Spc |   |   |   |   |
-|-------|---|---|---|-----|-------|--------|-----|---|---|---|---|
-```
-```c
-[_GAME] = LAYOUT_ortho_4x12(
-    KC_LCTL,  KC_Q,     KC_W,     KC_E,     KC_R,    XXXXXXX,  XXXXXXX,    KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,
-    KC_ESC,   KC_A,     KC_S,     KC_D,     KC_F,    XXXXXXX,  XXXXXXX,    KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,    XXXXXXX,  XXXXXXX,    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_ENT,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_TAB,  _______,  DF(_BASE),  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
-),
-```
-
-## Number/Symbols Layer
-
-``` markdown
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-|   |    |   |   |   |  |   |       |   |   |   |   |
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-| ! | @  | ( | ) | { |  |   | }     | [ | ] | - | ' |
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-| 1 | 2  | 3 | 4 | 5 |  |   | 6     | 7 | 8 | 9 | 0 |
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-| ` | \| | & | % | ^ |  |   | $     | # | = | + | * |
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-|   |    |   |   | \ |  | ~ | Enter |   |   |   |   |
-|---|----|---|---|---|--|---|-------|---|---|---|---|
-```
-```c
-[_NUM] = LAYOUT_ortho_4x12(
-    KC_EXLM,  KC_AT,    KC_LPRN,  KC_RPRN,  KC_LCBR,  XXXXXXX,  XXXXXXX,  KC_RCBR,  KC_LBRC,  KC_RBRC,  KC_MINS,  KC_QUOT,
-    KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     XXXXXXX,  XXXXXXX,  KC_6,     KC_7,     KC_8,     KC_9,     KC_0,
-    KC_GRV,   KC_PIPE,  KC_AMPR,  KC_PERC,  KC_CIRC,  XXXXXXX,  XXXXXXX,  KC_DLR,   KC_HASH,  KC_EQL,   KC_PLUS,  KC_ASTR,
-    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_BSLS,  _______,  KC_TILD,  KC_ENT,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX
+    KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,    KC_F11,   KC_F12,
+    XXXXXXX,  KC_MPRV,  KC_MPLY,  KC_MNXT,  XXXXXXX,  XXXXXXX,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT,  KC_PSCR,  XXXXXXX,
+    XXXXXXX,  KC_MUTE,  KC_VOLD,  KC_VOLU,  XXXXXXX,  KC_BRID,  KC_BRIU,  KC_PGDN,  KC_PGUP,  XXXXXXX,   XXXXXXX,  XXXXXXX,
+    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX
 ),
 ```
 
